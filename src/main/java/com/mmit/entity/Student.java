@@ -24,7 +24,7 @@ public class Student implements Serializable {
 	private int id;
 	
 	@Column(unique = true)
-	@NotNull (message = "Enter Course Name")
+	@NotNull (message = "Enter Student Name")
 	private String name;
 	private String email;
 	private int age;
