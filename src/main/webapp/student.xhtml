@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+<h:head>
+	<ui:include src="/views/resource.xhtml" />
+	<title>Student</title>
+</h:head> 
+<body> 
+	
+<div class="container">
+<ui:include src="/views/menu.xhtml" />
+	
+	<div class="row mt-2 mb-2" >
+		<div class="col-10"  >
+			<h3>All Students</h3>
+		</div>
+		<div class="col">
+			<h:form styleClass="form">
+				<h:commandButton action="student-add" value="Add Student" styleClass="btn btn-primary " />
+			</h:form>
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col">	
+				<!-- Student list -->
+				<h:dataTable styleClass="table mt-3" value="#{studentBean.studentList}" var="s">
+					<h:column>
+						<f:facet name="header">Student ID</f:facet>
+						#{s.id}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Student Name</f:facet>
+						#{s.name}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Email</f:facet>
+						#{s.email}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Age</f:facet>
+						#{s.age}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Year</f:facet>
+						#{s.year}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Address</f:facet>
+						#{s.address}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Date Of Birth</f:facet>
+						#{s.dateofbirth}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Action</f:facet>
+						<h:form>
+							<h:link outcome="student-add" value="Edit">
+							<f:param name="studentid" value="#{s.id}"></f:param>
+							</h:link> |
+							<h:commandLink action="#{studentBean.delete(s.id)}" value="Delete" />
+						</h:form>
+					</h:column>
+				</h:dataTable>
+			</div>
+		</div>
+	</div>
+	
+</body> 
+</html>

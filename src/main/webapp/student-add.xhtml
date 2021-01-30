@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+<h:head>
+	<ui:include src="/views/resource.xhtml" />
+	<title>Add Student</title>
+</h:head> 
+<body> 
+	
+<div class="container">
+	<ui:include src="/views/menu.xhtml" />
+		
+		<div class="row">
+			<div class="col-6">
+			<h5 class="p-3">#{studentBean.student.id == 0 ? 'Add' : 'Edit'} Student</h5>
+				<h:form styleClass="form" >
+					<h:inputHidden value="#{studentBean.student.id}" />
+					<div class="form-group">
+						<label>Student Name</label>
+						<h:inputText value="#{studentBean.student.name}" styleClass="form-control" p:placeholder="Enter Student Name" p:required="required"/>
+					</div>
+					 <div class="form-group">
+						<label>Email</label>
+						<h:inputText p:type="email" value="#{studentBean.student.email}" styleClass="form-control" p:placeholder="Enter Email" p:required="required"/>
+					</div>
+					<div class="form-group">
+						<label>Age</label>
+						<h:inputText p:type="number" value="#{studentBean.student.age}" styleClass="form-control"	p:required="required"/>
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Year" p:for="year"></h:outputLabel>
+						<h:selectOneMenu value="#{studentBean.student.year}" p:id="year" styleClass="form-control" >
+							<f:selectItem itemValue="First" itemLabel="First"/>
+							<f:selectItem itemValue="Second" itemLabel="Second"/>						
+							<f:selectItem itemValue="Third" itemLabel="Third"/>
+							<f:selectItem itemValue="Fourth" itemLabel="Fourth"/>						
+							<f:selectItem itemValue="Fifth" itemLabel="Fifth"/>
+						</h:selectOneMenu>
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						<h:inputText value="#{studentBean.student.address}" styleClass="form-control" p:placeholder="Enter Address" p:required="required"/>
+					</div>
+					<div class="form-group">
+						<label>Date of Birth</label>
+						<h:inputText value="#{studentBean.student.dateofbirth}"  styleClass="form-control" p:type="date" >
+							<f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+						</h:inputText>
+					</div>
+					<h:commandButton action="#{studentBean.save()}" value="Save" styleClass="btn btn-primary pl-5 pr-5" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+	
+	
+</body> 
+</html>
